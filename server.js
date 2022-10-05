@@ -1,6 +1,8 @@
 const express = require('express');
-const apiRoutes = require('./routes/apiRoutes');
-const htmlRoutes = require('./routes/htmlRoutes');
+const path = require("path");
+const fs = require("fs");
+const util = require("util")
+const { v4: uuidv4 } = require("uuid")
 
 // Initialize the app and create a port
 const app = express();
