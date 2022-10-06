@@ -4,6 +4,9 @@ const fs = require("fs");
 const util = require("util")
 const { v4: uuidv4 } = require("uuid")
 
+//  db
+let db = require("./db/db.json");
+
 // Initialize the app and create a port
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -48,9 +51,29 @@ app.post("/api/notes", (req, res) => {
     } else {
         res.status(500).json("couldn't save note")
     }
-
-
 });
+
+app.delete("/api/notes/:id", (req, res) => {
+    readUtility("./db/db.json")
+        .then((data) => {
+            let notes = JSON.parse(data)
+
+            for (let i = 0; i < notes.length; i++) {
+                let currentNote = notes[i];
+                if (currentNote.id === req.params.id) {
+                    notes.splice(i, 1);
+                    writeUtility("./db/db.json", JSON.stringify(notes))
+                    return res.status(200).json(`${currentNote} was removed successfully`)
+                }
+            }
+            return res.status(500).json("could not delete note")
+        })
+});
+app.get("/notes", (req, res) => {
+    res.sendFile(path.join(__dirname, "/public/notes.html"));
+});
+
+
 
 app.get("/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/notes.html"));
