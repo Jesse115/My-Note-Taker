@@ -13,7 +13,7 @@ Deployed it to heroku. everything should be ready to go.
 
 
 Heroku https://rocky-wildwood-19568.herokuapp.com/notes<br /><br />
-file:///C:/Users/ftsje/mywork/My-Note-Taker/Develop/public/index.html
+file:///C:/Users/ftsje/mywork/My-Note-Taker/Develop/public/index.html<br />
 Git hub: https://github.com/Jesse115/My-Note-Taker<br />
 
 Contact info <br />
